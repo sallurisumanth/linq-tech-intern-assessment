@@ -1,0 +1,8 @@
+pymongo
+dash
+plotly
+streamlit
+pandas
+streamlit-autorefresh
+humanize
+matplotlib

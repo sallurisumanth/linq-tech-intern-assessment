@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  mongo:
+    image: mongo
+    container_name: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+  data_ingest:
+    build: .
+    container_name: linq_data_ingest
+    depends_on:
+      - mongo
+    environment:
+      - MONGO_URI=mongodb://mongo:27017
+    working_dir: /app
+    volumes:
+      - .:/app
+    command: python data_ingest.py
+
+  app:
+    build: .
+    container_name: linq_app
+    depends_on:
+      - mongo
+    environment:
+      - MONGO_URI=mongodb://mongo:27017
+    working_dir: /app
+    volumes:
+      - .:/app
+    ports:
+      - "8501:8501"
+    command: streamlit run visualization.py --server.address=0.0.0.0
+
+volumes:
+  mongo-data:

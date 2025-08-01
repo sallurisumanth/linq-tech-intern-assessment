@@ -34,4 +34,4 @@ GitHub Repo shared with:
 patrick@linqapp.com
 careers@linqapp.com
 
-# Subject: Technology Intern Take-Home Submission
+# Subject: Linq Intern Take-Home Submission
